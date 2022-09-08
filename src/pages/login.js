@@ -10,14 +10,14 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showSignup, setShowSignup] = useState(false);
-    const BASE_URL = 'http://13.235.87.215:4000';
+    const BASE_URL = 'https://ecommce-be.herokuapp.com/ecomm/api/v1';
     const toggleSignup = () => {
         setShowSignup(!showSignup);
     }
     function signUp() {
         const data = { username: name, email: email, password: pword };
         console.warn(data);
-        fetch(BASE_URL + '/api/v1/user/signup', {
+        fetch(BASE_URL + '/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ const Login = () => {
     const login = () => {
         const data = { username: username, password: password };
         console.warn(data);
-        fetch(BASE_URL + '/api/v1/user/login', {
+        fetch(BASE_URL + '/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
