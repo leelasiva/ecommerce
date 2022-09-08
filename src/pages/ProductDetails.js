@@ -8,6 +8,7 @@ function ProductDetails({ id}) {
   
   const [data, setData] = useState([]);
   const [cart,setCart]=useState([]);
+  const [readmore,setReadMore] = useState(false);
   function getdata() {
     fetch(`https://fakestoreapi.com/products/1`)
       .then((res) => res.json())
@@ -22,6 +23,7 @@ function ProductDetails({ id}) {
  }
   return (
     <div>
+    
     {<Link to='/Cart'>
     <Navbar cart={cart.length}/>
    </Link>}
@@ -31,7 +33,11 @@ function ProductDetails({ id}) {
       </div>
       <div className='product__data'>
         <h3 className='product__title'>{data.title}</h3>
-        <p className='product__description'>{data.description}</p>
+        <p className='product__description'>{readmore && data.description}
+        <span>
+        <button onClick={()=>setReadMore(!readmore)} className="btn btn-secondary" 
+        style={{border:"none",marginLeft:'2px'}}>{readmore ? "ShowLess" : "Read More"}</button>
+        </span></p>
         <h3 className='sectionHeading'>Select Color</h3>
         <div>
         <img src={data.image} className='imgs' alt=''></img>
